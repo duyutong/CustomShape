@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class UnitCubeClass
+public class UnitShapeClass
 {
-    public static SUnitCube unitCube_24
+    public static SUnitCube unitCube
     {
         get
         {
@@ -132,4 +132,9 @@ public struct SUnitCube
     public int vertexCount { get { return vertices.Length; } }
     public int triangleCount { get { return triangles.Length; } }
     public int uvCount { get { return uv.Length; } }
+
+    public void SetColor()
+    {
+
+    }
 }
