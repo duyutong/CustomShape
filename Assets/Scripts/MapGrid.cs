@@ -5,6 +5,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public struct SGridData
+{
+    public Color color;
+    public Material material;
+    public int depth;
+}
 public class MapGrid : MonoBehaviour
 {
     public int row;
