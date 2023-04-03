@@ -32,6 +32,7 @@ public class MapGrid : MonoBehaviour
         {
             // 左键点击上色
             Debug.Log("左键点击上色");
+
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
