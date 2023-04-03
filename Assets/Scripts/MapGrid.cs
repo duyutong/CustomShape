@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public struct SGridData
 {
+    public int index;
     public Color color;
     public Material material;
     public int depth;
