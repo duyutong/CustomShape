@@ -1,4 +1,5 @@
-﻿using System;
+﻿using D.Unity3dTools;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.VersionControl;
@@ -11,8 +12,8 @@ public class MyShep : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        meshFilter = GetComponent<MeshFilter>();
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshFilter = transform.GetOrAddComponent<MeshFilter>();
+        meshRenderer = transform.GetOrAddComponent<MeshRenderer>();
 
         SUnitCube cube = new SUnitCube();
       

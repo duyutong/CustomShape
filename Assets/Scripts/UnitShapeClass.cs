@@ -9,7 +9,7 @@ public class UnitShapeClass
     public static int gridSize { set; get; } = 1;
     public static int mapSize { set; get; } = 16;
 
-    public SUnitCube GetUnitCube(SShapeIndex shapeIndex, int depth, int frontColorId, int backColorId)
+    public static SUnitCube GetUnitCube(SShapeIndex shapeIndex, int depth, int frontColorId, int backColorId = -1)
     {
         SUnitCube result = new SUnitCube();
         result.shapeIndex = shapeIndex;
@@ -24,6 +24,11 @@ public struct SShapeIndex
     public int row;
     public int col;
     public int index;
+}
+public struct SMeshData 
+{
+    public List<int> triangles;
+    public int materialId;
 }
 public struct SUnitCube
 {
@@ -118,7 +123,7 @@ public struct SUnitCube
             23,20,22,
             };
 
-        for (int i = 0; i < _triangles.Length; i++) _triangles[i] += shapeIndex.index * _triangles.Length;
+        for (int i = 0; i < _triangles.Length; i++) _triangles[i] += shapeIndex.index * vertices.Length;
         return _triangles;
     }
     private Vector2[] GetUV()
@@ -220,14 +225,35 @@ public struct SUnitCube
         return _uv;
     }
 
-    public Mesh GetDefaultMesh() 
+    public List<SMeshData> GetMeshDatas() 
+    {
+        List<SMeshData> result = new List<SMeshData>();
+        SMeshData meshData1 = new SMeshData();
+        meshData1.triangles = new List<int>(triangles);
+        meshData1.materialId = frontColorId;
+        result.Add(meshData1);
+        if (frontColorId != backColorId && backColorId != -1) 
+        {
+            SMeshData meshData2 = new SMeshData();
+            int[] frontTriangles = GetFrontTriangles();
+            int[] backTriangles = GetBackTriangles();
+            meshData1.triangles = new List<int>(frontTriangles);
+            meshData1.materialId = frontColorId;
+            
+            meshData2.triangles = new List<int>(backTriangles);
+            meshData2.materialId = backColorId;
+        }
+
+        return result;
+    }
+    public Mesh GetDefaultMesh()
     {
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.uv = uv;
 
-        if (frontColorId != backColorId) 
+        if (frontColorId != backColorId && backColorId != -1)
         {
             int[] frontTriangles = GetFrontTriangles();
             int[] backTriangles = GetBackTriangles();
@@ -239,12 +265,12 @@ public struct SUnitCube
         }
         return mesh;
     }
-    private int[] GetFrontTriangles() 
+    private int[] GetFrontTriangles()
     {
         int[] result = new int[30];
         int[] _triangles = triangles;
         int index = 0;
-        for(int i =0;i< triangleCount;i++) 
+        for (int i = 0; i < triangleCount; i++)
         {
             if (i > 5 && i < 12) continue;
             result[index] = _triangles[i];
