@@ -18,14 +18,11 @@ public class MapGrid : MonoBehaviour
 {
     public int row;
     public int col;
-<<<<<<< HEAD
     public SGridData gridData;
 
     private Text txtDepth;
     private Image imgColor;
-=======
-    public Color color;
->>>>>>> cb3b6c745f555cf535e6c093117b6adc1ec4d4c8
+
     private ShapeMapManager mapManager;
 
     // Start is called before the first frame update
@@ -36,15 +33,12 @@ public class MapGrid : MonoBehaviour
         eventTrigger.AddTrggerEventListener(EventTriggerType.PointerClick, OnPointerClick);
 
         mapManager = ShapeMapManager.instantiate;
-<<<<<<< HEAD
         gridData = new SGridData();
 
         txtDepth = transform.GetComponentInChildren<Text>();
         imgColor = transform.GetComponentInChildren<Image>();
 
         RefreshSelf();
-=======
->>>>>>> cb3b6c745f555cf535e6c093117b6adc1ec4d4c8
     }
 
     public void OnPointerClick(PointerEventData eventData)
