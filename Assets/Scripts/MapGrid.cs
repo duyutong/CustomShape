@@ -17,6 +17,7 @@ public class MapGrid : MonoBehaviour
     public int row;
     public int col;
     public Color color;
+    private ShapeMapManager mapManager;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,8 @@ public class MapGrid : MonoBehaviour
         EventTrigger eventTrigger = transform.GetOrAddComponent<EventTrigger>();
         eventTrigger.RemoveAllEventListener();
         eventTrigger.AddTrggerEventListener(EventTriggerType.PointerClick, OnPointerClick);
+
+        mapManager = ShapeMapManager.instantiate;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -32,7 +35,6 @@ public class MapGrid : MonoBehaviour
         {
             // 左键点击上色
             Debug.Log("左键点击上色");
-
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
