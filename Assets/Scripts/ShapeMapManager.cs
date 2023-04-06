@@ -22,7 +22,11 @@ public class ShapeMapManager : MonoBehaviour
     public SGridData currGridData = new SGridData();
     public static ShapeMapManager instantiate = null;
     private List<SGridData> cmList = new List<SGridData>();
+<<<<<<< HEAD
     private MapGrid[][] map;
+=======
+
+>>>>>>> cb3b6c745f555cf535e6c093117b6adc1ec4d4c8
     private void Awake()
     {
         if (instantiate == null) instantiate = this;
@@ -33,6 +37,7 @@ public class ShapeMapManager : MonoBehaviour
         InitGridRoot();
         InitColorRoot();
         InitDepthRoot();
+<<<<<<< HEAD
         InitCurrGridData();
     }
     public void OnClickCreatShape()
@@ -90,6 +95,10 @@ public class ShapeMapManager : MonoBehaviour
         Material material = new Material(Shader.Find("Standard"));
         meshRenderer.material = material;
     }
+=======
+    }
+
+>>>>>>> cb3b6c745f555cf535e6c093117b6adc1ec4d4c8
     private void InitDepthRoot()
     {
         for (int i = 0; i < 8; i++) 
@@ -110,12 +119,21 @@ public class ShapeMapManager : MonoBehaviour
     {
         cmList.Clear();
         Material[] materials = baseColorPrefab.GetComponentInChildren<MeshRenderer>().materials;
+<<<<<<< HEAD
         int _colorId = 0;
         foreach (Material _material in materials)
         {
             Color _color = _material.color;
             cmList.Add(new SGridData() { color = _color, material = _material, colorId = _colorId });
             _colorId++;
+=======
+        int _index = 0;
+        foreach (Material _material in materials)
+        {
+            Color _color = _material.color;
+            cmList.Add(new SGridData() { color = _color, material = _material,index = _index });
+            _index++;
+>>>>>>> cb3b6c745f555cf535e6c093117b6adc1ec4d4c8
         }
 
         colorRoot.RemoveAllChildren();
@@ -125,6 +143,7 @@ public class ShapeMapManager : MonoBehaviour
             Toggle toggle = newTrans.GetComponent<Toggle>();
             toggle.targetGraphic.color = gridData.color;
             toggle.onValueChanged.RemoveAllListeners();
+<<<<<<< HEAD
             toggle.onValueChanged.AddListener((isOn) => 
             {
                 if (!isOn) return;
@@ -142,6 +161,13 @@ public class ShapeMapManager : MonoBehaviour
     {
         currGridData = cmList[0];
         currGridData.depth = 1;
+=======
+            toggle.onValueChanged.AddListener((isOn) => { if (isOn) currGridData = gridData;});
+            toggle.group = colorRoot.GetComponent<ToggleGroup>();
+            newTrans.SetParent(colorRoot);
+            newTrans.Reset();
+        }
+>>>>>>> cb3b6c745f555cf535e6c093117b6adc1ec4d4c8
     }
 
     private void InitGridRoot()
