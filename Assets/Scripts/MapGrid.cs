@@ -2,18 +2,11 @@ using D.Unity3dTools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public struct SGridData
-{
-    public int index;
-    public Color color;
-    public int colorId;
-    public Material material;
-    public int depth;
-}
 public class MapGrid : MonoBehaviour
 {
     public int row;

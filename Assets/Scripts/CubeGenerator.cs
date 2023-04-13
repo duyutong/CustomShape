@@ -17,8 +17,9 @@ public class CubeGenerator : MonoBehaviour
         // 定义两个材质
         Material material1 = new Material(Shader.Find("Standard"));
         Material material2 = new Material(Shader.Find("Standard"));
+        Material material3 = new Material(Shader.Find("Standard"));
 
-        meshRenderer.materials = new Material[] { material1, material2 };
+        meshRenderer.materials = new Material[] { material1, material2, material3 };
 
         int[] triangles1 = new int[]
        {

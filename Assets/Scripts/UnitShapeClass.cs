@@ -234,14 +234,19 @@ public struct SUnitCube
         result.Add(meshData1);
         if (frontColorId != backColorId && backColorId != -1) 
         {
-            SMeshData meshData2 = new SMeshData();
+            result.Clear();
+            
             int[] frontTriangles = GetFrontTriangles();
-            int[] backTriangles = GetBackTriangles();
             meshData1.triangles = new List<int>(frontTriangles);
             meshData1.materialId = frontColorId;
-            
+
+            SMeshData meshData2 = new SMeshData();
+            int[] backTriangles = GetBackTriangles();
             meshData2.triangles = new List<int>(backTriangles);
             meshData2.materialId = backColorId;
+
+            result.Add(meshData1);
+            result.Add(meshData2);
         }
 
         return result;
@@ -280,7 +285,7 @@ public struct SUnitCube
     }
     private int[] GetBackTriangles()
     {
-        int[] result = new int[30];
+        int[] result = new int[6];
         int[] _triangles = triangles;
         int index = 0;
         for (int i = 0; i < triangleCount; i++)
