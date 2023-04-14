@@ -91,6 +91,7 @@ public struct SUnitCube
         int mapSize = UnitShapeClass.mapSize;
 
         Vector3 offset = size * new Vector3(shapeIndex.col - 0.5f * mapSize, shapeIndex.row - 0.5f * mapSize, -0.5f * Mathf.Max(depth, 1));
+        for (int i = 0; i < _vertices.Length; i++) _vertices[i].z *= depth;
         for (int i = 0; i < _vertices.Length; i++) _vertices[i] += offset;
         return _vertices;
     }

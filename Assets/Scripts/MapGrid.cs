@@ -54,7 +54,7 @@ public class MapGrid : MonoBehaviour
             RefreshSelf();
         }
     }
-    private void RefreshSelf()
+    public void RefreshSelf()
     {
         txtDepth.text = gridData.depth.ToString();
         imgColor.color = gridData.color;

@@ -55,7 +55,16 @@ public class ShapeMapManager : MonoBehaviour
         using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
         {
             mapData = (ShapeMapData)jsonSerializer.ReadObject(stream);
+            SMapGridData[][] saveMap = mapData.map;
+            for (int i = 0; i < Mathf.Pow(mapSize, 2); i++)
+            {
+                int row = i / 16;
+                int col = i % 16;
+                map[col][row].gridData = saveMap[col][row].gridData;
+                map[col][row].RefreshSelf();
+            }
         }
+
     }
     public void OnClickSaveShape(string shapeName) 
     {
